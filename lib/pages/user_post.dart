@@ -26,13 +26,17 @@ class _UserPostState extends State<UserPost> {
         child: Expanded(
           child: Column(
             children: [
-              Text('e-Mail: ' + routeData.email.toString()),
-              Text('Phone : ' + routeData.phone.toString()),
+              SizedBox(
+                  height: 20,
+                  child: Text('e-Mail: ' + routeData.email.toString())),
+              SizedBox(
+                  height: 20,
+                  child: Text('Phone : ' + routeData.phone.toString())),
               Container(
                 height: 10,
               ),
               const Text("Posts: "),
-              postsListview(routeData.id),
+              Expanded(child: postsListview(routeData.id)),
             ],
           ),
         ),
