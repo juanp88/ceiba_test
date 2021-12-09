@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:users_test/config/consts.dart';
 import 'package:users_test/models/post_model.dart';
 import 'package:users_test/models/user_model.dart';
 import 'package:users_test/services/api_service.dart';
@@ -15,7 +16,11 @@ class _UserPostState extends State<UserPost> {
   Widget build(BuildContext context) {
     final routeData = ModalRoute.of(context)!.settings.arguments as User;
     return Scaffold(
-      appBar: AppBar(title: Text(routeData.name.toString())),
+      appBar: AppBar(
+          backgroundColor: appBarColor,
+          title: Text(
+            routeData.name.toString(),
+          )),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Expanded(

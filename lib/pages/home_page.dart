@@ -43,9 +43,11 @@ class _HomePageState extends State<HomePage> {
               )
             : Column(
                 children: [
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).devicePixelRatio * 110,
                     child: TextField(
+                      decoration: const InputDecoration(
+                          hintText: "Ingrese el nombre de usuario"),
                       controller: controlador,
                       onChanged: (value) {
                         setState(() {
@@ -76,22 +78,27 @@ class _HomePageState extends State<HomePage> {
       return nameLower.contains(searchLower);
     }).toList();
 
-    return ListView.separated(
-        itemBuilder: (context, index) {
-          User user =
-              (searchInput.isNotEmpty ? usersFiltered[index] : allUsers[index]);
-          return GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, 'userPost', arguments: user);
+    return (searchInput.isNotEmpty && usersFiltered.isEmpty)
+        ? Container(
+            child: Text('No existe el usuario'),
+          )
+        : ListView.separated(
+            itemBuilder: (context, index) {
+              User user = (searchInput.isNotEmpty
+                  ? usersFiltered[index]
+                  : allUsers[index]);
+              return GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, 'userPost', arguments: user);
+                },
+                child: userCard(user.name.toString(), user.email.toString(),
+                    user.phone.toString()),
+              );
             },
-            child: userCard(user.name.toString(), user.email.toString(),
-                user.phone.toString()),
-          );
-        },
-        separatorBuilder: (context, index) => Container(
-              height: 5,
-            ),
-        itemCount:
-            searchInput.isEmpty ? allUsers.length : usersFiltered.length);
+            separatorBuilder: (context, index) => Container(
+                  height: 5,
+                ),
+            itemCount:
+                searchInput.isEmpty ? allUsers.length : usersFiltered.length);
   }
 }
