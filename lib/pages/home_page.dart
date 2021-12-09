@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:users_test/config/consts.dart';
 import 'package:users_test/models/user_model.dart';
-import 'package:users_test/services/api_service.dart';
-import 'package:users_test/services/db_service.dart';
 import 'package:users_test/view_model/user_view_model.dart';
 import 'package:users_test/widgets/user_card.dart';
-import 'package:users_test/widgets/user_listview.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
